@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	  <PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	  </PropertyGroup>
+
+	<Target Name="CopyDirectories" AfterTargets="Build">
+		<ItemGroup>
+			<MySourceDirectories Include="$(ProjectDir)umeditor\**\*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(MySourceDirectories)" DestinationFolder="$(TargetDir)umeditor\%(RecursiveDir)" />
+	</Target>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1587.40" />
+	  <PackageReference Include="NHotkey.WindowsForms" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Newtonsoft.Json">
+	    <HintPath>..\..\..\..\nuget\newtonsoft.json\13.0.2\lib\net6.0\Newtonsoft.Json.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+
+</Project>
