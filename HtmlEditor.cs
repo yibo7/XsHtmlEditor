@@ -17,6 +17,10 @@ namespace XsHtmlEditor
     public partial class HtmlEditor : UserControl
     {
         private static readonly Keys IncrementKeys = Keys.Shift | Keys.V;
+        /// <summary>
+        /// 提交粘贴图片时调用，并提交图片流
+        /// </summary>
+        public string ServerUrl { get; set; }   
         public HtmlEditor()
         {
             InitializeComponent(); 

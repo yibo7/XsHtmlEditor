@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XsHtmlEditor", "XsHtmlEditor.csproj", "{4FA4A9C9-E984-4059-9830-8E1AAED11F38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FA4A9C9-E984-4059-9830-8E1AAED11F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA4A9C9-E984-4059-9830-8E1AAED11F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA4A9C9-E984-4059-9830-8E1AAED11F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA4A9C9-E984-4059-9830-8E1AAED11F38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {725AD675-E4CF-48A1-9376-E241B4D85538}
+	EndGlobalSection
+EndGlobal
