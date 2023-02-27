@@ -40,6 +40,8 @@ htmlEditor.ServerUrl = "https://github.com/yibo7/XsHtmlEditor";
 You can use the shortcut Ctrl+V.
 ServerUrl is your own service.
 
+![File](images/file.png)
+
 
 
 
