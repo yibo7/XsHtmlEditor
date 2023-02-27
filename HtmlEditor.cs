@@ -1,10 +1,7 @@
 ﻿using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using NHotkey;
-using NHotkey.WindowsForms;
-using System.Globalization;
-using System.Net.Http.Json;
-using System.Text.Json.Serialization; 
+using NHotkey.WindowsForms; 
 namespace XsHtmlEditor
 {
     public class HtmlContent
@@ -28,7 +25,11 @@ namespace XsHtmlEditor
             webView2.NavigationCompleted += Wv2Ctrl_NavigationCompleted;
             webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
             webView2.EnsureCoreWebView2Async();
-            HotkeyManager.Current.AddOrReplace("Increment", IncrementKeys, OnIncrement);
+            try {
+                HotkeyManager.Current.AddOrReplace("Increment", IncrementKeys, OnIncrement);
+
+            } catch { }
+            
         }
 
         private void OnIncrement(object? sender, HotkeyEventArgs e)
