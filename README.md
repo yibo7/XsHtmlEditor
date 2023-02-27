@@ -1,6 +1,6 @@
 # XsHtmlEditor
 Rich Text Editor based on .NET Core WinForms
-
+![File](images/file.png)
 # API£º
 ### 1¡¢Set editor content
 ```cs
@@ -40,7 +40,7 @@ htmlEditor.ServerUrl = "https://github.com/yibo7/XsHtmlEditor";
 You can use the shortcut Ctrl+V.
 ServerUrl is your own service.
 
-![File](images/file.png)
+
 
 
 
