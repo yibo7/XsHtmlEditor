@@ -22,9 +22,8 @@
     var um = UM.getEditor('myEditor');
      
     //按钮的操作
-    function insertHtml() {
-        var value = prompt('插入html代码', '');
-        um.execCommand('insertHtml', value)
+    function insertHtml(html) { 
+        um.execCommand('insertHtml', html.Data)
     }
     function isFocus(){
         alert(um.isFocus())
@@ -40,17 +39,14 @@
         alert(UM.getEditor('myEditor').getAllHtml())
     }
     function getContent() {
-        const html = UM.getEditor('myEditor').getContent(); 
+        const html = UM.getEditor('myEditor').getContent();  
         return html;
     }
     function getPlainTxt() {
         return UM.getEditor('myEditor').getPlainTxt();
     }
-    function setContent(html,isAppendTo) {
-        // var arr = [];
-        // arr.push("使用editor.setContent('欢迎使用umeditor')方法可以设置编辑器的内容");
-        UM.getEditor('myEditor').setContent(html.Data, isAppendTo);
-        // alert(arr.join("\n"));
+    function setContent(html,isAppendTo) { 
+        UM.getEditor('myEditor').setContent(html.Data, isAppendTo); 
     }
     function setDisabled() {
         UM.getEditor('myEditor').setDisabled('fullscreen');

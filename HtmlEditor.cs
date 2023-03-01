@@ -13,7 +13,7 @@ namespace XsHtmlEditor
     }
     public partial class HtmlEditor : UserControl
     {
-        private static readonly Keys IncrementKeys = Keys.Shift | Keys.V;
+        private static readonly Keys IncrementKeys = Keys.Shift |Keys.Alt| Keys.V;
         /// <summary>
         /// 提交粘贴图片时调用，并提交图片流
         /// </summary>
@@ -66,7 +66,7 @@ namespace XsHtmlEditor
             string content = await webView2.CoreWebView2.ExecuteScriptAsync(script);
             content = System.Text.RegularExpressions.Regex.Unescape(content);
             //string escaped = System.Text.RegularExpressions.Regex.Escape(input);
-            return content;
+            return content.Trim('"');
         }
 
         /// <summary>
