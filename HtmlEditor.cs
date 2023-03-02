@@ -26,9 +26,12 @@ namespace XsHtmlEditor
             webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
             webView2.EnsureCoreWebView2Async();
             try {
-                HotkeyManager.Current.AddOrReplace("Increment", IncrementKeys, OnIncrement);
+                HotkeyManager.Current.Remove("IncrementName");
+                HotkeyManager.Current.AddOrReplace("IncrementName", IncrementKeys, OnIncrement);
 
-            } catch { }
+            } catch (Exception ex){
+                MessageBox.Show("粘贴Base64图片快捷键冲突！"+ ex.Message);
+            }
             
         }
 
