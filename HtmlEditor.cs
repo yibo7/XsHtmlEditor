@@ -25,16 +25,25 @@ namespace XsHtmlEditor
             webView2.NavigationCompleted += Wv2Ctrl_NavigationCompleted;
             webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
             webView2.EnsureCoreWebView2Async();
-            try {
+            
+            
+        }
+        /// <summary>
+        /// 启动粘贴base64图片的热键
+        /// </summary>
+        public void EnablePasteImgHotKey()
+        {
+            try
+            {
                 HotkeyManager.Current.Remove("IncrementName");
                 HotkeyManager.Current.AddOrReplace("IncrementName", IncrementKeys, OnIncrement);
 
-            } catch (Exception ex){
-                MessageBox.Show("粘贴Base64图片快捷键冲突！"+ ex.Message);
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("粘贴Base64图片快捷键冲突！" + ex.Message);
+            }
         }
-
         private void OnIncrement(object? sender, HotkeyEventArgs e)
         {
             PasteImgBase64();
