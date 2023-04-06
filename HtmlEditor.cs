@@ -127,6 +127,7 @@ namespace XsHtmlEditor
         }
 
 
+
         /// <summary>
         /// 获取带有换行格式类的人本
         /// </summary>
