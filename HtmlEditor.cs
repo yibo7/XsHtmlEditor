@@ -26,7 +26,7 @@ namespace XsHtmlEditor
             webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
             webView2.EnsureCoreWebView2Async();
             
-            
+
         }
         /// <summary>
         /// 启动粘贴base64图片的热键
