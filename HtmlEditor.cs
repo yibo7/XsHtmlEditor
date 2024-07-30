@@ -104,7 +104,8 @@ namespace XsHtmlEditor
             {
                 sWidth = $"style='width: {width}px; '";
             }
-            string img = $"<div class='edui-image-item edui-image-upload-item'><div class='edui-image-close'></div><img src='{src}' class='edui-image-pic' {sWidth}/></div>";
+            //string img = $"<p class='edui-image-item edui-image-upload-item'><div class='edui-image-close'></div><img src='{src}' class='edui-image-pic' {sWidth}/></p>";
+            string img = $"<p class='edui-image-item edui-image-upload-item'><img src='{src}' class='edui-image-pic' {sWidth}/></p>";
             InsertHtml(img);
         }
         
