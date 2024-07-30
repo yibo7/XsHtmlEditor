@@ -25,6 +25,7 @@ namespace XsHtmlEditor
             webView2.NavigationCompleted += Wv2Ctrl_NavigationCompleted;
             webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
             webView2.EnsureCoreWebView2Async();
+
             
 
         }
@@ -64,10 +65,68 @@ namespace XsHtmlEditor
             var url = new Uri(@"file:///" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"umeditor/xs_index/index.html").Replace('\\', '/'));
             webView2.Source = url;
 
-            
+            webView2.WebMessageReceived += (object? sender, CoreWebView2WebMessageReceivedEventArgs e) =>
+            {
+                string message = e.TryGetWebMessageAsString();
+                 
+                if (message == "UpLocImg")
+                {
+                    var lst = OpenSelFiles("选择图片|*.bmp;*.jpg;*.jpeg; *.png; *.gif;");
+                    foreach (var item in lst)
+                    {
+                        InserImg(item,600); 
+                    }
+                }else if (message.StartsWith("data:image/png;base64"))
+                {
+                    // 使用示例 
+                    string base64Image = message; // 这里假设message是一个包含图片的Base64字符串
+                    string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), @"umeditor\base64images"); // 获取当前目录下的htmlboximages路径
+                    string fileName = DateTime.Now.Ticks.ToString() + ".png"; // 使用时间戳作为文件名
+                    string filePath = Path.Combine(directoryPath, fileName); // 完整的文件路径
+
+                    // 检查目录是否存在，如果不存在则创建
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
+
+                    Base64ImageSaver.SaveBase64ImageToDisk(message, filePath);
+                    InserImg(filePath);
+                }
+            };
 
         }
 
+        private void InserImg(string src,int width=0)
+        {
+            string sWidth = "";
+            if (width > 0)
+            {
+                sWidth = $"style='width: {width}px; '";
+            }
+            string img = $"<div class='edui-image-item edui-image-upload-item'><div class='edui-image-close'></div><img src='{src}' class='edui-image-pic' {sWidth}/></div>";
+            InsertHtml(img);
+        }
+        
+        /// <summary>
+        /// 打开选择文件的窗口
+        /// </summary>
+        /// <param name="Filter">筛选项，比如 选择视频|*.mp4;*.mov;*.mkv;*.avi;*.flv;*.mpeg;*.ogg;*.vob;*.webm;*.wmv;*.rmvb;</param>
+        /// <param name="IsMultiselect"></param>
+        /// <returns></returns>
+        private string[] OpenSelFiles(string Filter = "All files (*.*)|*.*", bool IsMultiselect = true)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = IsMultiselect;
+            fileDialog.Title = "请选择文件";
+            fileDialog.Filter = Filter;
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //string file = fileDialog.FileName;
+                return fileDialog.FileNames;
+            }
+            return new string[] { };
+        }
         /// <summary>
         /// 获取文本框html
         /// </summary>
