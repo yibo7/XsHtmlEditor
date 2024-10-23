@@ -6,6 +6,10 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<VersionPrefix>1.0.1</VersionPrefix>
+		<AssemblyTitle>XS.HtmlEditor DLL</AssemblyTitle>
+		<AssemblyDescription>基于 umeditor 的winform 富文本编辑器</AssemblyDescription>
+		<PackageOutputPath>D:\web\MyNugetLibs</PackageOutputPath>
 	  </PropertyGroup>
 
 	<Target Name="CopyDirectories" AfterTargets="Build">
