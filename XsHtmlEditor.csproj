@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	  <PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<VersionPrefix>1.0.1</VersionPrefix>
+		<VersionPrefix>1.0.2</VersionPrefix>
 		<AssemblyTitle>XS.HtmlEditor DLL</AssemblyTitle>
 		<AssemblyDescription>基于 umeditor 的winform 富文本编辑器</AssemblyDescription>
 		<PackageOutputPath>D:\web\MyNugetLibs</PackageOutputPath>
+		<Platforms>AnyCPU;x64</Platforms>
 	  </PropertyGroup>
 
 	<Target Name="CopyDirectories" AfterTargets="Build">
@@ -20,7 +21,7 @@
 	</Target>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2535.41" />
+	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3065.39" />
 	  <PackageReference Include="NHotkey.WindowsForms" Version="2.1.0" />
 	</ItemGroup>
 

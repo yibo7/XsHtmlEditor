@@ -151,9 +151,20 @@ namespace XsHtmlEditor
             HtmlContent data = new HtmlContent(html);
 
             string content = JsonConvert.SerializeObject(data, Formatting.Indented);
-           
+
             string script = $"setContent({content},false)";
-            await webView2.CoreWebView2.ExecuteScriptAsync(script);
+            //await webView2.CoreWebView2.ExecuteScriptAsync(script);
+
+            if (InvokeRequired)
+            {
+                await this.Invoke(async () => {
+                    await webView2.CoreWebView2.ExecuteScriptAsync(script);
+                });
+            }
+            else
+            {
+                await webView2.CoreWebView2.ExecuteScriptAsync(script);
+            }
 
         }
         /// <summary>
