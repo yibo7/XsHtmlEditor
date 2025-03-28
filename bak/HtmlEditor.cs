@@ -1,10 +1,16 @@
 ﻿using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using NHotkey;
-using NHotkey.WindowsForms;
-using System.Diagnostics;
+using NHotkey.WindowsForms; 
 namespace XsHtmlEditor
 {
+    public class HtmlContent
+    {
+        public HtmlContent(string data) {
+            Data = data;
+        }
+        public string Data { get; set; }
+    }
     public partial class HtmlEditor : UserControl
     {
         private static readonly Keys IncrementKeys = Keys.Shift |Keys.Alt| Keys.V;
@@ -14,81 +20,15 @@ namespace XsHtmlEditor
         public string ServerUrl { get; set; }   
         public HtmlEditor()
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
             webView2.NavigationCompleted += Wv2Ctrl_NavigationCompleted;
-            webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted;
-            _ = InitWebView2Async();
+            webView2.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted; 
+            webView2.EnsureCoreWebView2Async();
+
+            
+
         }
-
-        private async Task<bool> CheckWebView2Runtime()
-        {
-            try
-            {
-                // 尝试创建 CoreWebView2Environment，这是检测运行时是否存在的更轻量级方法
-                await CoreWebView2Environment.CreateAsync();
-                return true; // 如果能成功创建环境，则运行时很可能存在
-            }
-            catch (WebView2RuntimeNotFoundException)
-            {
-                // 明确捕获到未找到运行时的异常
-                return false;
-            }
-            catch (Exception ex)
-            {
-                // 捕获其他初始化或环境创建过程中可能发生的异常
-                Console.WriteLine($"检查 WebView2 运行时时发生错误: {ex.Message}");
-                // 您可以根据具体情况决定是否将这些情况也视为运行时不存在
-                // 或者返回 false 并记录/显示更详细的错误信息
-                return false;
-            }
-        }
-
-
-        private async Task InitWebView2Async()
-        {
-            // 获取 bin 目录下的 WebView2Runtime 文件夹路径
-            string runtimePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WebView2Runtime");
-            if (Path.Exists(runtimePath))
-            {
-                var options = new CoreWebView2EnvironmentOptions();
-                var environment = await CoreWebView2Environment.CreateAsync(runtimePath, null, options);
-
-                // 使用自定义环境初始化 WebView2
-                await webView2.EnsureCoreWebView2Async(environment);
-            }
-            else
-            {
-                if (await CheckWebView2Runtime())
-                {
-                    await webView2.EnsureCoreWebView2Async();
-                }
-                else
-                {
-                    DialogResult result = MessageBox.Show(
-                        "您需要安装 WebView2 运行时，或将 WebView2 运行时复制到当前程序的 WebView2Runtime 目录下。\n点击【确定】打开下载页面。",
-                        "缺少 WebView2 运行时",
-                        MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (result == DialogResult.OK)
-                    {
-                        try
-                        {
-                            // 打开 WebView2 运行时下载页面
-                            Process.Start(new ProcessStartInfo("https://developer.microsoft.com/microsoft-edge/webview2/") { UseShellExecute = true });
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"无法打开下载页面: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-                
-            }   
-        }
-
         /// <summary>
         /// 启动粘贴base64图片的热键
         /// </summary>
@@ -215,12 +155,11 @@ namespace XsHtmlEditor
             string script = $"setContent({content},false)";
             //await webView2.CoreWebView2.ExecuteScriptAsync(script);
 
-            if (InvokeRequired) // 是否在线程安全上运行
+            if (InvokeRequired)
             {
-                this.Invoke((Delegate)(() =>
-                {
-                    webView2.CoreWebView2.ExecuteScriptAsync(script).GetAwaiter().GetResult();
-                }));
+                await this.Invoke(async () => {
+                    await webView2.CoreWebView2.ExecuteScriptAsync(script);
+                });
             }
             else
             {
@@ -296,14 +235,5 @@ namespace XsHtmlEditor
                 OnInited();
             }
         }
-    }
-
-    public class HtmlContent
-    {
-        public HtmlContent(string data)
-        {
-            Data = data;
-        }
-        public string Data { get; set; }
     }
 }

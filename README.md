@@ -1,5 +1,9 @@
 # XsHtmlEditor
 Rich Text Editor based on .NET Core WinForms
+
+> 前提条件：需要在客户机安装WebView2运行时，或在当前程序的发布目录下创建目录WebView2Runtime，存放WebView2的固定版本运行时。
+> WebView2的下载地址：https://developer.microsoft.com/en-us/microsoft-edge/webview2
+
 ![File](images/file.png)
 # API：
 ### 1、Set editor content
@@ -39,6 +43,7 @@ htmlEditor.ServerUrl = "https://github.com/yibo7/XsHtmlEditor";
 ```
 You can use the shortcut Ctrl+V.
 ServerUrl is your own service.
+
 
 
 

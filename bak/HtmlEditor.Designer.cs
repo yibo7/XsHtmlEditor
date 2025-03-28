@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            webView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
-            ((System.ComponentModel.ISupportInitialize)webView2).BeginInit();
-            SuspendLayout();
+            this.webView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            ((System.ComponentModel.ISupportInitialize)(this.webView2)).BeginInit();
+            this.SuspendLayout();
             // 
             // webView2
             // 
-            webView2.AllowExternalDrop = true;
-            webView2.CreationProperties = null;
-            webView2.DefaultBackgroundColor = Color.White;
-            webView2.Dock = DockStyle.Fill;
-            webView2.Location = new Point(0, 0);
-            webView2.Name = "webView2";
-            webView2.Size = new Size(800, 450);
-            webView2.TabIndex = 0;
-            webView2.ZoomFactor = 1D;
+            this.webView2.AllowExternalDrop = true;
+            this.webView2.CreationProperties = null;
+            this.webView2.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webView2.Location = new System.Drawing.Point(0, 0);
+            this.webView2.Name = "webView2";
+            this.webView2.Size = new System.Drawing.Size(800, 450);
+            this.webView2.TabIndex = 0;
+            this.webView2.ZoomFactor = 1D;
             // 
             // HtmlEditor
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(webView2);
-            Name = "HtmlEditor";
-            Size = new Size(800, 450);
-            ((System.ComponentModel.ISupportInitialize)webView2).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.webView2);
+            this.Name = "HtmlEditor";
+            this.Size = new System.Drawing.Size(800, 450);
+            ((System.ComponentModel.ISupportInitialize)(this.webView2)).EndInit();
+            this.ResumeLayout(false);
 
         }
 
